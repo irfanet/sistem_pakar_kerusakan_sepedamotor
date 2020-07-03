@@ -15,14 +15,17 @@ class Homepage extends MY_Controller
 
     public function index()
     {
+
         // $this->load->view('homepage/index.php');
 
         if (!$this->input->post('gejala')) {
 			$data['contentuser'] = 'user/diagnosa'; //nama file yang akan jadi kontent di template
             // $data['listKelompok'] = $this->Kelompok_model->get_list_data();
+            // $this->load->view('layout/head_load');
             $this->load->view('layout/home_head');
             $this->load->view('homepage/index', $data);
             $this->load->view('layout/home_foot');
+            // $this->load->view('layout/foot_load');
 
 		}else{
             // $data["contentuser"]="homepage/hasil_diagnosa";

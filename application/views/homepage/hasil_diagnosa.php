@@ -21,15 +21,15 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Hasil Diagnosa</h5>
   
                 <p class="card-text">
-                    <section class="call-to-action-area section-gap " style="background-image: -webkit-linear-gradient(0deg, #ffffff 0%, #ffffff 100%) !important; padding:60px 120px;" id="printTable" >
+                    <!-- <section class="call-to-action-area section-gap " style="background-image: -webkit-linear-gradient(0deg, #ffffff 0%, #ffffff 100%) !important; padding:60px 120px;" id="printTable" > -->
                     <!-- <div class="content" style="padding:10px 40px;"> -->
-                        <h2>Hasil Analisis</h2>
+                        <!-- <h2>Hasil Analisis</h2> -->
                         <div class="box box-warning">
                             <div class="box-header with-border">
-                                <h6 class="box-title">Gejala yang dipilih</h6>
+                                <h5 class="box-title">Gejala yang dipilih</h5>
                             </div><!-- /.box-header -->
                                 <div class="box-body table-responsive">
                                 <table id="tbl-list" class="table table-bordered">
@@ -50,21 +50,32 @@
                         </div><!--box-->
                         <div class="box box-success">
                             <div class="box-header with-border">
-                                <h6 class="box-title">Hasil Diagnosa</h6>
+                                <h5 class="box-title">Kerusakan yang dialami</h5>
                             </div><!-- /.box-header -->
                             <div class="box-body">
-                                <table id="tbl-list" class="table table-bordered">
+                                <table id="tbl-list" class="table table-condensed"">
                                     <tr>
                                         <th width="50px" style="background: #67CDFF; color: white">No</th>
                                         <th style="background: #67CDFF; color: white">Kerusakan</th>
+                                        <th style="background: #67CDFF; color: white">Kepercayaan</th>
                                         <th style="background: #67CDFF; color: white">Tingkat Kepercayaan</th>
                                     </tr>
                                     <tr>
                                         <?php $i = 1; foreach($listPenyakit as $value){?>
+                                            <?php $color = 'danger';
+                                            if ($i>1){
+                                                $color = 'primary';
+                                            }
+                                            ?>
                                             <tr>
                                                 <td width="30px"><?php echo $i++?></td>
                                                 <td><?php echo $value['kode']." - ".$value['nama']?></td>
-                                                <td><?php echo $value['kepercayaan']?> %</td>
+                                                <td>
+                                                <div class="progress progress-sm">
+                                                <div class="progress-bar bg-<?= $color; ?>" style="width: <?= $value['kepercayaan']?>%"></div>
+                                                </div>
+                                                </td>
+                                                <td><span class="badge bg-<?= $color; ?>"><?php echo $value['kepercayaan']?> %</span></td>
                                             </tr>
                                         <?php }?>
                                     </tr>
@@ -96,7 +107,7 @@
                             </div>
                         </div><!--box-->
                     </div>
-                    </section>
+                    <!-- </section> -->
 
                     </p>
               </div>

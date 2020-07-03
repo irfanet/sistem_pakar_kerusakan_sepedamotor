@@ -23,7 +23,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item">
-            <a href="<?php echo site_url('Page_c') ?>" class="nav-link" id="menuDashboard">
+            <a href="<?php echo site_url('homepage') ?>" class="nav-link" id="menuDashboard">
               <i class="nav-icon fas fa-home"></i>
               <p> Dashboard </p>
             </a>
