@@ -1,17 +1,17 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed!');
 
-class Gejala_model extends CI_Model
+class User_model extends CI_Model
 {
 
-    var $tabel = "gejala";
+    var $tabel = "user";
     public function __construct()
     {
         parent::__construct();
     }
 
 
-    /* Get data gejala */
+    /* Get data user */
     function getData()
     {
         $getData = $this->db->get($this->tabel);
@@ -22,8 +22,9 @@ class Gejala_model extends CI_Model
     function insertDb($post)
     {
         $dataInsert = array(
-            'kd_gejala' => $post['kd_gejala'],
-            'gejala' => $post['gejala']
+            'nama' => $post['nama'],
+            'username' => $post['username'],
+            'password' => password_hash($post['password'],PASSWORD_DEFAULT)
         );
         $resultInsert = $this->db->insert($this->tabel, $dataInsert);
         return $resultInsert;
@@ -32,36 +33,26 @@ class Gejala_model extends CI_Model
     // get data by id
     public function getDataById($id)
     {
-        return $this->db->query("select * from gejala where id='$id'")->result();
+        return $this->db->query("select * from user where id_user='$id'")->result();
     }
 
     // edit
     public function editData()
     {
         $data = array(
-            'kd_gejala' => $this->input->post('kd_gejala', TRUE),
-            'gejala' => $this->input->post('gejala', TRUE)
+            'nama' => $this->input->post('nama', TRUE),
+            'username' => $this->input->post('username', TRUE),
+            'password' => password_hash($this->input->post('password', TRUE),PASSWORD_DEFAULT)
         );
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where('id_user', $this->input->post('id'));
         $this->db->update($this->tabel, $data);
     }
 
     //hapus
     public function deleteData($id)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_user', $id);
         $resultQry = $this->db->delete($this->tabel);
         return $resultQry;
-    }
-
-    function getGejalaById($id){
-        $sql = "select id,kd_gejala,gejala from gejala where id in (".$id.")";
-        return $this->db->query($sql);
-    }
-
-    function getGejala(){
-        $this->db->select('*');
-        $this->db->from('gejala');
-        return $this->db->get();
     }
 }

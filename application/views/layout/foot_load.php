@@ -114,8 +114,28 @@
 				$('#topbarKerusakan').addClass('active')
 				break
 			case 'MenuCF':
-				$('#menuCF').addClass('active')
+				$('#menuCF').addClass('menu-open')
+				$('#CF').addClass('active')
+				$('#menuCF a:first').addClass('active')
 				$('#topbarCF').addClass('active')
+				break
+			case 'CFInput':
+				$('#menuCF').addClass('menu-open')
+				$('#CFInput').addClass('active')
+				$('#menuCF a:first').addClass('active')
+				$('#topbarCF').addClass('active')
+				break
+			case 'MenuUser':
+				$('#menuUser').addClass('menu-open')
+				$('#User').addClass('active')
+				$('#menuUser a:first').addClass('active')
+				$('#topbarUser').addClass('active')
+				break
+			case 'UserInput':
+				$('#menuUser').addClass('menu-open')
+				$('#UserInput').addClass('active')
+				$('#menuUser a:first').addClass('active')
+				$('#topbarUser').addClass('active')
 				break
 			default:
 				$('#menuDashboard').addClass('active')

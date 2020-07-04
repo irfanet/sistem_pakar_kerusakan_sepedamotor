@@ -76,12 +76,12 @@ class CF_model extends CI_Model
         return $resultQry;
     }
 
-    function get_by_gejala($gejala){
+    function getKerusakanByGejala($gejala){
         $sql = "select distinct id_kerusakan,p.kd_kerusakan,p.kerusakan,p.penanganan from cf_aturan gp inner join kerusakan p on gp.id_kerusakan=p.id where id_gejala in (".$gejala.") order by id_kerusakan,id_gejala";
         return $this->db->query($sql);
     }
 
-    function get_gejala_by_penyakit($id,$gejala=null){
+    function getGejalaByKerusakan($id,$gejala=null){
         $sql = "select cf_aturan.id_gejala,md,mb from cf_aturan where id_kerusakan=".$id;
         if($gejala!=null)
            $sql=$sql." and id_gejala in (".$gejala.")";

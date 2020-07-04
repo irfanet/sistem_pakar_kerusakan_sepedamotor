@@ -1,6 +1,6 @@
 <?php
-$title = "Data Kerusakan";
-$controller = "Kerusakan";
+$title = "Data User";
+$controller = "User";
 ?>
 
 <!-- Content Header (Page header) -->
@@ -39,9 +39,8 @@ $controller = "Kerusakan";
             <table id="example1" class="table table-bordered table-hover">
               <thead class="text-center">
                 <th>No</th>
-                <th>Kode</th>
-                <th>Kerusakan</th>
-                <th>Penanganan</th>
+                <th>Nama</th>
+                <th>Username</th>
                 <th>Aksi</th>
               </thead>
               <tbody>
@@ -50,13 +49,12 @@ $controller = "Kerusakan";
                 foreach ($getData as $showData) { ?>
                   <tr>
                     <td><?php echo $no ?></td>
-                    <td><?php echo $showData->kd_kerusakan; ?></td>
-                    <td><?php echo $showData->kerusakan; ?></td>
-                    <td><?php echo $showData->penanganan; ?></td>
+                    <td><?php echo $showData->nama; ?></td>
+                    <td><?php echo $showData->username; ?></td>
                     <td>
-                      <a href="<?= base_url($controller); ?>/editForm/<?= $showData->id; ?>" class="btn btn-small btn-warning"><i class="fas fa-edit"></i></a>
-                      <!-- <a href="<?= base_url($controller); ?>/deleteData/<?= $showData->id; ?>" class="btn btn-small btn-danger"><i class="fas fa-trash"></i></a> -->
-                      <a data-href="<?php echo site_url('kerusakan/deleteData')?>" data-item="das" onclick="confirmDel('<?php echo urlencode(base64_encode($showData->id)) ?>')" class="btn btn-small btn-danger" id="delBtn"><i class="fas fa-trash"></i></a>
+                      <a href="<?= base_url($controller); ?>/editForm/<?= $showData->id_user; ?>" class="btn btn-small btn-warning"><i class="fas fa-edit"></i></a>
+                      <!-- <a href="<?= base_url($controller); ?>/deleteData/<?= $showData->id_user; ?>" class="btn btn-small btn-danger"><i class="fas fa-trash"></i></a> -->
+                      <a data-href="<?php echo site_url('user/deleteData')?>" data-item="das" onclick="confirmDel('<?php echo urlencode(base64_encode($showData->id_user)) ?>')" class="btn btn-small btn-danger" id="delBtn"><i class="fas fa-trash"></i></a>
                     </td>
                   </tr>
 
@@ -66,9 +64,8 @@ $controller = "Kerusakan";
               </tbody>
               <tfoot class="text-center">
                 <th>No</th>
-                <th>Kode</th>
-                <th>Kerusakan</th>
-                <th>Penanganan</th>
+                <th>Nama</th>
+                <th>Username</th>
                 <th>Aksi</th>
               </tfoot>
             </table>

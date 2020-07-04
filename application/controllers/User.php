@@ -1,27 +1,27 @@
 <?php
 defined('BASEPATH') or exit('No direct access script allowed !');
 
-class CF extends MY_Controller
+class User extends MY_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('CF_model');
+        $this->load->model('User_model');
     }
 
     public function index()
     {
         // Data yg dikirim ke halaman view
         $this->pageData = array(
-            'title' => 'SP | CF',
-            'menu' => 'MenuCF',
+            'title' => 'SP | User',
+            'menu' => 'MenuUser',
             'assets' => array('datatables','sweetalert2','konfirm'),
-            'getData' => $this->CF_model->getData()
+            'getData' => $this->User_model->getData()
         );
 
         // File view yang akan ditampilkan
-        $this->page = 'CF/index.php';
+        $this->page = 'user/index.php';
 
         // Call function layout dari MY_Controller
         $this->layout();
@@ -30,13 +30,11 @@ class CF extends MY_Controller
     public function inputForm()
     {
         $this->pageData = array(
-            'title' => 'SP | Tambah data cf fakta',
-            'menu' => 'CFInput',
+            'title' => 'SP | Tambah data user',
+            'menu' => 'UserInput',
             'assets' => array('sweetalert2','notif'),
-            'getKerusakan' => $this->CF_model->getKerusakan(),
-            'getGejala' => $this->CF_model->getGejala()
         );
-        $this->page = 'CF/inputform_v.php';
+        $this->page = 'user/inputform_v.php';
         $this->layout();
     }
 
@@ -44,13 +42,11 @@ class CF extends MY_Controller
     {
         // Get data POST
         $dataInputan = array(
-            'id_gejala' => $this->input->post('id_gejala'),
-            'id_kerusakan' => $this->input->post('id_kerusakan'),
-            'md' => $this->input->post('md'),
-            'mb' => $this->input->post('mb')
-            
+            'nama' => $this->input->post('nama'),
+            'username' => $this->input->post('username'),
+            'password' =>  password_hash($this->input->post('password'),PASSWORD_DEFAULT)
         );
-        $saveData = $this->CF_model->insertDb($dataInputan);
+        $saveData = $this->User_model->insertDb($dataInputan);
 
         if ($saveData > 0) {
             $status = 'SucessInsert';
@@ -61,30 +57,28 @@ class CF extends MY_Controller
         }
         $this->session->set_flashdata('flashStatus', $status);
         $this->session->set_flashdata('flashMsg', $msg);
-        redirect('CF/inputForm');
+        redirect('User/inputForm');
     }
 
     public function editForm($id)
     {
-        $this->form_validation->set_rules('id_kerusakan', 'ID Kerusakan', 'required');
+        $this->form_validation->set_rules('nama', 'Kode User', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->pageData = array(
-                'title' => 'SP | Edit data cf fakta',
-                'menu' => 'MenuCF',
+                'title' => 'SP | Edit data user',
+                'menu' => 'MenuUser',
                 'assets' => array(),
-                'getData' =>  $this->CF_model->getDataById($id),
-                'getKerusakan' => $this->CF_model->getKerusakan(),
-                'getGejala' => $this->CF_model->getGejala()
+                'getData' =>  $this->User_model->getDataById($id)
             );
-            $this->page = 'CF/editform_v.php';
+            $this->page = 'user/editform_v.php';
             $this->layout();
         } else {
-            $this->CF_model->editData();
+            $this->User_model->editData();
 
             // ('nama session', 'isinya apa')
             $this->session->set_flashdata('flash', 'Data berhasil diedit');
-            redirect('CF');
+            redirect('user');
         }
     }
 
@@ -96,7 +90,7 @@ class CF extends MY_Controller
         /* decode id das */
         $dasID = base64_decode(urldecode($encoded_dasID));
 
-        $delStatus = $this->CF_model->deleteData($dasID);    
+        $delStatus = $this->User_model->deleteData($dasID);    
         if($delStatus > 0){
             $flashMsg = 'successDel';
         } else {
@@ -106,6 +100,6 @@ class CF extends MY_Controller
         echo $flashMsg;
 
         // $this->session->set_flashdata('flash', 'Berhasil dihapus');
-        // redirect('CF');
+        // redirect('username');
     }
 }

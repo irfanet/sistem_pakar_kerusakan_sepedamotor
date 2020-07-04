@@ -1,9 +1,9 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<?= base_url()?>" class="brand-link">
       <img src="<?php echo base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">App Name</span>
+      <span class="brand-text font-weight-light">Sistem Pakar</span>
     </a>
 
     <!-- Sidebar -->
@@ -14,7 +14,13 @@
           <img src="<?php echo base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">User Name & Foto</a>
+        <?php if($this->session->userdata('id_user')==TRUE){
+								$nama_user = $this->session->userdata('nama');	
+              }else{
+                $nama_user = "User";
+              }
+              ?>
+          <a href="#" class="d-block"><?= $nama_user ?></a>
         </div>
       </div>
 
@@ -25,7 +31,7 @@
           <li class="nav-item">
             <a href="<?php echo site_url('homepage') ?>" class="nav-link" id="menuDashboard">
               <i class="nav-icon fas fa-home"></i>
-              <p> Dashboard </p>
+              <p> Homepage </p>
             </a>
           </li>
 
@@ -90,13 +96,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('cf') ?>" class="nav-link" id="cf">
+                <a href="<?php echo site_url('cf') ?>" class="nav-link" id="CF">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Nilai CF</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo site_url('cf/inputForm') ?>" class="nav-link" id="cfInput">
+                <a href="<?php echo site_url('cf/inputForm') ?>" class="nav-link" id="CFInput">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Rules CF</p>
                 </a>
@@ -104,21 +110,30 @@
             </ul>
           </li>
 
-          <!-- <li class="nav-item">
-            <a href="<?php echo site_url('CF') ?>" class="nav-link" id="menuCF">
-              <i class="nav-icon fas fa-home"></i>
-              <p> CF Fakta</p>
+          <!-- Menu -->
+          <li class="nav-item has-treeview" id="menuUser">
+            <a class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Data User
+                <i class="right fas fa-angle-left"></i>
+              </p>
             </a>
-          </li> -->
-
-          
-          <!-- <li class="nav-item">
-            <a href="<?php echo site_url('Riwayat') ?>" class="nav-link" id="menuDashboard">
-              <i class="nav-icon fas fa-home"></i>
-              <p> Riwayat </p>
-            </a>
-          </li> -->
-
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo site_url('User') ?>" class="nav-link" id="User">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daftar User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo site_url('User/inputForm') ?>" class="nav-link" id="UserInput">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tambah User</p>
+                </a>
+              </li>
+            </ul>
+          </li>
     
         </ul>
       </nav>

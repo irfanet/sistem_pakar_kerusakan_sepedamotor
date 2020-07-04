@@ -21,7 +21,11 @@
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Gejala Kerusakan</h5>
+              <h3 class="card-title">
+                  <i class="fas fa-wrench "></i>
+                  Gejala Kerusakan
+                </h3>
+  
   
                 <p class="card-text">
                 <section id="kontak" class="call-to-action-area section-gap " style="background-image: -webkit-linear-gradient(0deg, #ffffff 0%, #ffffff 100%) !important;" >
@@ -31,26 +35,29 @@
                       <div class="menu-content pb-60 col-lg-6">
                         <div class="title text-center">
                           <h2 style="margin-bottom: 0px;">Diagnosa</h2><br>
-                          <p>Silahkan pilih gejala - gejala kerusakan yang dirasakan pada kendaraan sepeda motor anda, dengan cara mencetangnya</p>
+                          <p>Silahkan pilih gejala - gejala kerusakan yang dirasakan pada kendaraan sepeda motor anda, dengan cara mencetangnya.</p>
                         </div>
                       </div>
                     </div>
                     <div class="row d-flex justify-content-center">
-                      <div class="col-md-10 col-md-offset-2" >
-                        <span style="font-weight: bold;" >Gejala</span><br>
+                      <div class="col-md-12" >
+                      
+                      <h5 class="card-title">Gejala yang dirasakan :</h5>
+  <br><br>    
                           <?php
                                     $this->load->model(array('Gejala_model'));
-                                    $listGejala = $this->Gejala_model->get_by_kelompok();
+                                    $listGejala = $this->Gejala_model->getGejala();
                                     foreach($listGejala->result() as $value2){?>
-                          <input  class="form-check-input"  type="checkbox" name="gejala[]" value="<?php echo $value2->id?>" > <b><?php echo $value2->kd_gejala."</b> - ".$value2->gejala?> <br>
+                          &emsp;<input  class="form-check-input"  type="checkbox" name="gejala[]" value="<?php echo $value2->id?>" > <b><?php echo $value2->kd_gejala."</b>&ensp;-&ensp; ".$value2->gejala?> <br>
                         <br>
                         <?php }?>
+
                       </div>
                     </div>
                     <br>
                     <div class="row d-flex justify-content-center">
-                      <div class="col-md-12" style="float: left; padding: 0;">
-                        <button type="submit" name="submit" class="btn main-btn" style="background-color: #41C1FF;  border-radius: 0px;">Proses</button>
+                      <div class="col-md-12">
+                        <button type="submit" name="submit" class="btn btn-block btn-primary btn-lg">Proses</button>
                       </div>
                     </div>
                   </div>

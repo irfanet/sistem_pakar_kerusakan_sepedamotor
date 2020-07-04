@@ -16,28 +16,19 @@ class Homepage extends MY_Controller
     public function index()
     {
 
-        // $this->load->view('homepage/index.php');
-
         if (!$this->input->post('gejala')) {
-			$data['contentuser'] = 'user/diagnosa'; //nama file yang akan jadi kontent di template
-            // $data['listKelompok'] = $this->Kelompok_model->get_list_data();
-            // $this->load->view('layout/head_load');
             $this->load->view('layout/home_head');
-            $this->load->view('homepage/index', $data);
+            $this->load->view('homepage/index');
             $this->load->view('layout/home_foot');
-            // $this->load->view('layout/foot_load');
-
 		}else{
-            // $data["contentuser"]="homepage/hasil_diagnosa";
-          
 			$gejala = implode(",", $this->input->post("gejala"));
-			$data["listGejala"] = $this->Gejala_model->get_list_by_id($gejala);
-			//hitung
-			$listPenyakit = $this->CF_model->get_by_gejala($gejala);
-			$penyakit = array();
+			$data["listGejala"] = $this->Gejala_model->getGejalaById($gejala);
+			//hitung cf aturan 
+			$listKerusakan = $this->CF_model->getKerusakanByGejala($gejala);
+			$kerusakan = array();
 			$i=0;
-			foreach($listPenyakit->result() as $value){
-				$listGejala = $this->CF_model->get_gejala_by_penyakit($value->id_kerusakan,$gejala);
+			foreach($listKerusakan->result() as $value){
+				$listGejala = $this->CF_model->getGejalaByKerusakan($value->id_kerusakan,$gejala);
 				$combineCFmb=0;
 				$combineCFmd=0;
 				$CFBefore=0;
@@ -55,24 +46,18 @@ class Homepage extends MY_Controller
 				}
 				if($combinehasil)
 				{
-					$penyakit[$i]=array('kode'=>$value->kd_kerusakan,
-										'nama'=>$value->kerusakan,
+					$kerusakan[$i]=array('kode'=>$value->kd_kerusakan,
+										'kerusakan'=>$value->kerusakan,
 										'kepercayaan'=>$combinehasil*-100,
-										'keterangan'=>$value->penanganan);
-										// 'user_id' =>$user_login);
-					// $this->db->insert('hasil_diagnosa', $penyakit[$i]);
+										'penanganan'=>$value->penanganan);
 					$i++;
 				}
-
-				
- 
 			}
 
 			//insert ke tabel history
 			$insert_data = array();
 			foreach ($this->input->post("gejala") as $g) {
 				$insert_data[] = array(
-								// 'user_id' => $user_login,
 								'gejala_id' => $g
 							);
 			}
@@ -82,108 +67,80 @@ class Homepage extends MY_Controller
 			{
 				return ($a["kepercayaan"] > $b["kepercayaan"]) ? -1 : 1;
 			}
-			usort($penyakit, "cmp");
-			$data["listPenyakit"] = $penyakit;
+			usort($kerusakan, "cmp");
+			$data["listKerusakan"] = $kerusakan;
 			$data_hasil = array(
-				'kode' =>$penyakit[0]['kode'],
-				'nama' =>$penyakit[0]['nama'],
-				'kepercayaan' =>$penyakit[0]['kepercayaan'],
-				'keterangan' =>$penyakit[0]['keterangan'],
-				// 'user_id' =>$penyakit[0]['user_id'],
+				'kode' =>$kerusakan[0]['kode'],
+				'kerusakan' =>$kerusakan[0]['kerusakan'],
+				'kepercayaan' =>$kerusakan[0]['kepercayaan'],
+				'penanganan' =>$kerusakan[0]['penanganan'],
 			);
             $this->db->insert('riwayat_diagnosa', $data_hasil);
-            // if($data_hasil != 0){
-            //     redirect('Homepage/hasilDiagnosa');
-            // }else{
-            //     redirect('Homepage');
-            // }
 
-            // $this->load->view('homepage/index', $data);
             $this->load->view('layout/home_head');
             $this->load->view('homepage/hasil_diagnosa', $data);
             $this->load->view('layout/home_foot');
 		}
-	
-
     }
-    public function hasilDiagnosa()
+
+    public function login()
     {
-        $this->load->view('homepage/hasil_diagnosa');
+		// if($this->session->userdata('id_user') == TRUE){
+		// 	redirect('gejala');
+		// }
+        $this->form_validation->set_rules('username','Username','trim|required|strip_tags');
+		$this->form_validation->set_rules('password','Password','trim|required');
+
+		if($this->form_validation->run()==FALSE){
+			$this->load->view('homepage/login');
+		}else{
+			// validasinya success
+			$this->_login();
+		}
     }
+    public function _login(){
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
 
-    public function inputForm()
-    {
-        $this->pageData = array(
-            'title' => 'SP | Tambah data gejala',
-            'menu' => 'UserInput',
-            'assets' => array('sweetalert2'),
-        );
-        $this->page = 'gejala/inputform_v.php';
-        $this->layout();
+		$admin = $this->db->get_where('user', ['username' => $username])->row_array();
+		if($admin){
+			if($admin['is_active']==1){
+				if(password_verify($password, $admin['password'])){
+					$data= [
+                        'id_user' => $admin['id_user'],
+                        'nama' => $admin['nama'],
+						'username' => $admin['username'],
+						'level' => $admin['level'],
+						'status' => 'admin'
+					]; 
+					$this->session->set_userdata($data);
+                    redirect('gejala');	
+				}else{
+					$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+					Login failed! Wrong password.</div>');
+					redirect('homepage/login');
+				}
+			}else{
+				$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+			This Account has not been activited</div>');
+				redirect('homepage/login');
+			}
+		}else{
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+			Account is not registered</div>');
+			redirect('homepage/login');
+		}
     }
+    public function logout(){
 
-    function inputProses()
-    {
-        // Get data POST
-        $dataInputan = array(
-            'kd_gejala' => $this->input->post('kd_gejala'),
-            'gejala' => $this->input->post('gejala'),
-            'cf_aturan' => $this->input->post('cf_aturan')
-        );
-        $saveData = $this->Homepage_model->insertDb($dataInputan);
+        $this->session->unset_userdata('id_user');
+        $this->session->unset_userdata('nama');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('level');
+		$this->session->unset_userdata('status');
 
-        if ($saveData > 0) {
-            $status = 'SucessInsert';
-            $msg = 'Berhasil menambahkan data';
-        } else {
-            $status = 'FailedInsert';
-            $msg = 'Gagal menambahkan data !';
-        }
-        $this->session->set_flashdata('flashStatus', $status);
-        $this->session->set_flashdata('flashMsg', $msg);
-        redirect('User');
-    }
-
-    public function editForm($id)
-    {
-        $this->form_validation->set_rules('kd_gejala', 'Kode User', 'required');
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->pageData = array(
-                'title' => 'SP | Edit data gejala',
-                'menu' => 'MenuUser',
-                'assets' => array(),
-                'getData' =>  $this->Homepage_model->getDataById($id)
-            );
-            $this->page = 'gejala/editform_v.php';
-            $this->layout();
-        } else {
-            $this->Homepage_model->editData();
-
-            // ('nama session', 'isinya apa')
-            $this->session->set_flashdata('flash', 'Data berhasil diedit');
-            redirect('gejala');
-        }
-    }
-
-    public function deleteData()
-    {
-        /* get id das dari method post ajax */
-        $encoded_dasID = $this->input->post('postID');
-
-        /* decode id das */
-        $dasID = base64_decode(urldecode($encoded_dasID));
-
-        $delStatus = $this->Homepage_model->deleteData($dasID);    
-        if($delStatus > 0){
-            $flashMsg = 'successDel';
-        } else {
-            $flashMsg = $delStatus;
-        }
-
-        echo $flashMsg;
-
-        // $this->session->set_flashdata('flash', 'Berhasil dihapus');
-        // redirect('gejala');
-    }
+		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
+			  You have been logout</div>');
+			redirect('homepage/login');
+	}
 }
