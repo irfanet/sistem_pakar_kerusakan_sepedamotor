@@ -33,48 +33,48 @@
          <!-- form start -->
          <form class="form-horizontal" method="POST" action="<?php echo site_url($controller . '/inputProses') ?>">
            <div class="card-body">
-                            <div id="alertSuccess">
-                            </div>
+             <div id="alertSuccess">
+             </div>
 
              <!-- Form-part input Kode CF -->
              <div class="form-group row">
-                            <label for="kd_kerusakan" class="col-sm-2 col-form-label">Kerusakan</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" name="id_kerusakan" id="kd_kerusakan" required>
-                                    <option value="0">-- Pilih Jenis Kerusakan --</option>
-                                    <?php foreach($getKerusakan as $showOpt){ ?>
-                                    <option value="<?php echo $showOpt->id ?>"><?php echo $showOpt->kd_kerusakan.' - '.$showOpt->kerusakan ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
+               <label for="kd_kerusakan" class="col-sm-2 col-form-label">Kerusakan</label>
+               <div class="col-sm-10">
+                 <select class="form-control" name="id_kerusakan" id="kd_kerusakan" required>
+                   <option value="0">-- Pilih Jenis Kerusakan --</option>
+                   <?php foreach ($getKerusakan as $showOpt) { ?>
+                     <option value="<?php echo $showOpt->id ?>"><?php echo $showOpt->kd_kerusakan . ' - ' . $showOpt->kerusakan ?></option>
+                   <?php } ?>
+                 </select>
+               </div>
+             </div>
 
-                           <!-- Form-part input Kode CF -->
+             <!-- Form-part input Kode CF -->
              <div class="form-group row">
-                            <label for="kd_gejala" class="col-sm-2 col-form-label">Gejala</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" name="id_gejala" id="kd_gejala" required>
-                                    <option value="0">-- Pilih Jenis Gejala --</option>
-                                    <?php foreach($getGejala as $showOpt){ ?>
-                                    <option value="<?php echo $showOpt->id ?>"><?php echo $showOpt->kd_gejala.' - '.$showOpt->gejala ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
+               <label for="kd_gejala" class="col-sm-2 col-form-label">Gejala</label>
+               <div class="col-sm-10">
+                 <select class="form-control" name="id_gejala" id="kd_gejala" required>
+                   <option value="0">-- Pilih Jenis Gejala --</option>
+                   <?php foreach ($getGejala as $showOpt) { ?>
+                     <option value="<?php echo $showOpt->id ?>"><?php echo $showOpt->kd_gejala . ' - ' . $showOpt->gejala ?></option>
+                   <?php } ?>
+                 </select>
+               </div>
+             </div>
 
              <!-- Form-part input Nilai MD -->
              <div class="form-group row">
                <label for="md" class="col-sm-2 col-form-label">Nilai MD</label>
                <div class="col-sm-10">
-                 <input type="text" class="form-control" id="md" name="md" step="0.01" min="0" placeholder="Nilai MD">
+                 <input type="number" class="form-control" id="md" name="md" step="0.1" min="-1" max="1" placeholder="Nilai MD">
                </div>
              </div>
 
-               <!-- Form-part input Nilai MB -->
-  <div class="form-group row">
+             <!-- Form-part input Nilai MB -->
+             <div class="form-group row">
                <label for="mb" class="col-sm-2 col-form-label">Nilai MB</label>
                <div class="col-sm-10">
-                 <input type="text" class="form-control" id="mb" name="mb" step="0.01" min="0" placeholder="Nilai MB">
+                 <input type="number" class="form-control" id="mb" name="mb" step="0.1" min="-1" max="1" placeholder="Nilai MB">
                </div>
              </div>
 
@@ -92,11 +92,11 @@
    </div>
  </div>
  <!-- /.content -->
- <?php if($this->session->flashdata('flashStatus')){ ?>
-            <script>
-                var flashStatus = "<?php echo $this->session->flashdata('flashStatus') ?>";
-                var site_url = "<?php echo site_url('cf') ?>";
-                var flashMsg = "<?php echo $this->session->flashdata('flashMsg') ?>";
-                console.log(flashStatus);
-            </script>
-    <?php } ?>
+ <?php if ($this->session->flashdata('flashStatus')) { ?>
+   <script>
+     var flashStatus = "<?php echo $this->session->flashdata('flashStatus') ?>";
+     var site_url = "<?php echo site_url('cf') ?>";
+     var flashMsg = "<?php echo $this->session->flashdata('flashMsg') ?>";
+     console.log(flashStatus);
+   </script>
+ <?php } ?>

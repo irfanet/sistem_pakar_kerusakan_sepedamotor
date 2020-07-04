@@ -56,7 +56,7 @@ $controller = "Kerusakan";
                                 </div>
                             </div>
 
-                                                        <!-- Form-part input Penanganan -->
+                            <!-- Form-part input Penanganan -->
                             <div class="form-group row">
                                 <label for="penanganan" class="col-sm-2 col-form-label">Penanganan</label>
                                 <div class="col-sm-10">

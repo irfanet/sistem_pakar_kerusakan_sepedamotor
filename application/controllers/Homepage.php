@@ -85,9 +85,9 @@ class Homepage extends MY_Controller
 
     public function login()
     {
-		// if($this->session->userdata('id_user') == TRUE){
-		// 	redirect('gejala');
-		// }
+		if($this->session->userdata('id_user') == TRUE){
+			redirect('gejala');
+		}
         $this->form_validation->set_rules('username','Username','trim|required|strip_tags');
 		$this->form_validation->set_rules('password','Password','trim|required');
 

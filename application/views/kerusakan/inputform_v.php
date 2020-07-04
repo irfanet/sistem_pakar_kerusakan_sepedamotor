@@ -33,8 +33,8 @@
          <!-- form start -->
          <form class="form-horizontal" method="POST" action="<?php echo site_url($controller . '/inputProses') ?>">
            <div class="card-body">
-                            <div id="alertSuccess">
-                            </div>
+             <div id="alertSuccess">
+             </div>
 
              <!-- Form-part input Kode Kerusakan -->
              <div class="form-group row">
@@ -52,9 +52,9 @@
                </div>
              </div>
 
-             
-            <!-- Form-part input Kerusakan -->
-            <div class="form-group row">
+
+             <!-- Form-part input Kerusakan -->
+             <div class="form-group row">
                <label for="penanganan" class="col-sm-2 col-form-label">Penanganan</label>
                <div class="col-sm-10">
                  <input type="text" class="form-control" id="penanganan" name="penanganan" step="0.01" min="0" placeholder="Penanganan">
@@ -74,10 +74,10 @@
    </div>
  </div>
  <!-- /.content -->
- <?php if($this->session->flashdata('flashStatus')){ ?>
-            <script>
-                var flashStatus = "<?php echo $this->session->flashdata('flashStatus') ?>";
-                var site_url = "<?php echo site_url('kerusakan') ?>";
-                var flashMsg = "<?php echo $this->session->flashdata('flashMsg') ?>";
-            </script>
-    <?php } ?>
+ <?php if ($this->session->flashdata('flashStatus')) { ?>
+   <script>
+     var flashStatus = "<?php echo $this->session->flashdata('flashStatus') ?>";
+     var site_url = "<?php echo site_url('kerusakan') ?>";
+     var flashMsg = "<?php echo $this->session->flashdata('flashMsg') ?>";
+   </script>
+ <?php } ?>

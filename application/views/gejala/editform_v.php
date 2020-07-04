@@ -56,7 +56,7 @@ $controller = "Gejala";
                                 </div>
                             </div>
 
-                                                        <!-- Form-part input CF Aturan -->
+                            <!-- Form-part input CF Aturan -->
                             <!-- <div class="form-group row">
                                 <label for="cf_aturan" class="col-sm-2 col-form-label">CF Aturan</label>
                                 <div class="col-sm-10">
@@ -64,7 +64,7 @@ $controller = "Gejala";
                                 </div>
                             </div> -->
 
-                      
+
                         <?php
                         }
                         ?>

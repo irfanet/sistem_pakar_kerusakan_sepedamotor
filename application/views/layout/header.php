@@ -15,7 +15,7 @@
         <a href="<?php echo site_url('CF') ?>" class="nav-link" id="topbarCF"><b>CF Aturan </b></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo site_url('User') ?>" class="nav-link" id="topbarUser"><b>User </b></a>
+        <a href="<?php echo site_url('User') ?>" class="nav-link" id="topbarUser"><b>Data User </b></a>
       </li>
     </ul>
 

@@ -38,12 +38,12 @@ $controller = "CF";
           <div class="card-body">
             <table id="example1" class="table table-bordered table-hover">
               <thead class="text-center">
-                <th>No</th>
+                <th width="50px">No</th>
                 <th>Gejala</th>
                 <th>Kerusakan</th>
                 <th>MB</th>
                 <th>MD</th>
-                <th>Aksi</th>
+                <th width="100px">Aksi</th>
               </thead>
               <tbody>
                 <?php
@@ -58,7 +58,7 @@ $controller = "CF";
                     <td>
                       <a href="<?= base_url($controller); ?>/editForm/<?= $showData->id_data; ?>" class="btn btn-small btn-warning"><i class="fas fa-edit"></i></a>
                       <!-- <a href="<?= base_url($controller); ?>/deleteData/<?= $showData->id; ?>" class="btn btn-small btn-danger"><i class="fas fa-trash"></i></a> -->
-                      <a data-href="<?php echo site_url('cf/deleteData')?>" data-item="das" onclick="confirmDel('<?php echo urlencode(base64_encode($showData->id_data)) ?>')" class="btn btn-small btn-danger" id="delBtn"><i class="fas fa-trash"></i></a>
+                      <a data-href="<?php echo site_url('cf/deleteData') ?>" data-item="das" onclick="confirmDel('<?php echo urlencode(base64_encode($showData->id_data)) ?>')" class="btn btn-small btn-danger" id="delBtn"><i class="fas fa-trash"></i></a>
                     </td>
                   </tr>
 
@@ -68,7 +68,7 @@ $controller = "CF";
               </tbody>
               <tfoot class="text-center">
                 <th>No</th>
-                <th>CF</th>
+                <th>Gejala</th>
                 <th>Kerusakan</th>
                 <th>MB</th>
                 <th>MD</th>

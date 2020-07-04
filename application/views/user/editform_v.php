@@ -56,11 +56,11 @@ $controller = "Username";
                                 </div>
                             </div>
 
-                                                        <!-- Form-part input Password -->
+                            <!-- Form-part input Password -->
                             <div class="form-group row">
-                                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                <label for="password" class="col-sm-2 col-form-label">Password Baru</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="password" name="password" step="0.01" min="0" " placeholder="Password">
+                                    <input type="password" class="form-control" id="password" name="password" step="0.01" min="0" " placeholder=" Password Baru">
                                 </div>
                             </div>
                         <?php

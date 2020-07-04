@@ -1,8 +1,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<?= base_url()?>" class="brand-link">
-      <img src="<?php echo base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+    <a href="<?= base_url() ?>" class="brand-link">
+      <img src="<?php echo base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Sistem Pakar</span>
     </a>
 
@@ -14,12 +13,12 @@
           <img src="<?php echo base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-        <?php if($this->session->userdata('id_user')==TRUE){
-								$nama_user = $this->session->userdata('nama');	
-              }else{
-                $nama_user = "User";
-              }
-              ?>
+          <?php if ($this->session->userdata('id_user') == TRUE) {
+            $nama_user = $this->session->userdata('nama');
+          } else {
+            $nama_user = "User";
+          }
+          ?>
           <a href="#" class="d-block"><?= $nama_user ?></a>
         </div>
       </div>
@@ -27,7 +26,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          
+
           <li class="nav-item">
             <a href="<?php echo site_url('homepage') ?>" class="nav-link" id="menuDashboard">
               <i class="nav-icon fas fa-home"></i>
@@ -35,6 +34,7 @@
             </a>
           </li>
 
+          <li class="nav-header">DATASET</li>
           <!-- Menu Daerah Aliran Sungai-->
           <li class="nav-item has-treeview" id="menuGejala">
             <a class="nav-link">
@@ -84,11 +84,13 @@
               </li>
             </ul>
           </li>
+          </li>
 
-             <!-- Menu Daerah Aliran Sungai-->
+          <li class="nav-header">CERTAINLY FACTOR</li>
+          <!-- Menu Daerah Aliran Sungai-->
           <li class="nav-item has-treeview" id="menuCF">
             <a class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
+              <i class="nav-icon fas fa-sitemap"></i>
               <p>
                 CF Aturan
                 <i class="right fas fa-angle-left"></i>
@@ -109,7 +111,9 @@
               </li>
             </ul>
           </li>
+          </li>
 
+          <li class="nav-header">LAINNYA</li>
           <!-- Menu -->
           <li class="nav-item has-treeview" id="menuUser">
             <a class="nav-link">
@@ -134,7 +138,8 @@
               </li>
             </ul>
           </li>
-    
+          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
