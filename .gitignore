@@ -35,5 +35,3 @@ license.txt
 catatan.txt
 aplication/third_party/*
 user_guide/*
-.htaccess
-application/config/database.php
