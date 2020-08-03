@@ -2,6 +2,11 @@
 $title = "Data Kerusakan";
 $controller = "Kerusakan";
 ?>
+      <!-- Tiny MCE -->
+
+      <script src="<?php echo base_url() ?>assets/js_custome/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+      <script>tinymce.init({selector:'textarea'});</script>
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -57,11 +62,18 @@ $controller = "Kerusakan";
                             </div>
 
                             <!-- Form-part input Penanganan -->
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label for="penanganan" class="col-sm-2 col-form-label">Penanganan</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="penanganan" name="penanganan" step="0.01" min="0" value="<?= $showData->penanganan; ?>" placeholder="Penanganan">
                                 </div>
+                            </div> -->
+                                        <!-- Form-part input Kerusakan -->
+                            <div class="form-group row">
+                            <label for="penanganan" class="col-sm-2 col-form-label">Penanganan</label>
+                            <div class="col-sm-10">
+                                <textarea class="textarea" id="penanganan" name="penanganan"  placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $showData->penanganan; ?></textarea>
+                            </div>
                             </div>
                         <?php
                         }

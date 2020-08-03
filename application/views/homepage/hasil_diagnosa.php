@@ -98,13 +98,13 @@
 
                                  <div class="box box-success">
                                      <div class="box-header with-border">
-                                         <h6 class="box-title">Kesimpulan :</h6>
+                                         <h6 class="box-title"><b>Kesimpulan :</b></h6>
                                      </div><!-- /.box-header -->
                                      <div class="box-body">
                                          <?php if (sizeof($listKerusakan) > 0) { ?>
                                              <p>
                                                  Berdasarkan hasil diagnosa, motor anda mengalami kerusakan <b><?php echo $listKerusakan[0]['kerusakan']; ?></b> dengan tingkat kepercayaan <b><?php echo $listKerusakan[0]['kepercayaan']; ?>%</b>.<br />
-                                                 <h6 class="box-title">Solusi :</h6>
+                                                 <h6 class="box-title"><b>Solusi :</b></h6>
                                                  <?php echo $listKerusakan[0]['penanganan']; ?>.
                                                  <!-- <p style="font-style: bold; color: red; font-size: 13px;">*Hasil diagnosa ini masih membutuhkan pemeriksaan lebih lanjut yaitu dengan pemeriksaan USG untuk mendapatkan hasil yang lebih akurat.</p> -->
                                              </p>

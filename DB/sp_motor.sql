@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jul 2020 pada 21.36
+-- Waktu pembuatan: 03 Agu 2020 pada 16.00
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -115,11 +115,11 @@ CREATE TABLE `kerusakan` (
 --
 
 INSERT INTO `kerusakan` (`id`, `kd_kerusakan`, `kerusakan`, `penanganan`) VALUES
-(1, 'KR-01', 'Busi kotor', 'Bersihkan busi'),
-(2, 'KR-02', 'Telat ganti oli', 'Ganti oli'),
-(3, 'KR-03', 'CVT Rusak', 'Ganti CVT'),
-(4, 'KR-04', 'Filter udara kotor', 'Bersihkan'),
-(5, 'KR-05', 'Injector Rusak', 'Ganti Injector');
+(1, 'KR-01', 'Busi kotor', '<p>1. Pastikan anda selalu membersihkan atau mengganti saringan udara apabila dirasa sudah cukup lama</p>\r\n<p>2. Lakukan pengecekan busi setiap 4.000km</p>\r\n<p>3. Ukur celah busi antara ground dan center elektroda. Apabila celah tersebut lebih besar dari 1mm silahkan ganti busi.</p>\r\n<p>4. Bersihkan endapan kotoran sisa pembakaran pada busi motor</p>'),
+(2, 'KR-02', 'Telat ganti oli', '<p>1. Pilih oli sesuai spesifikasi motor</p>\r\n<p>2. Segera ganti oli dan rutin menggantinya setiap 2.000km</p>\r\n<p>3. Tunggu mesin motor dingin saat mengganti oli</p>\r\n<p>4. Jangan gunakan sisa oli untuk melumasi rantai</p>'),
+(3, 'KR-03', 'CVT Rusak', '<p>1. Segera ganti CVT dibengkel / tempat service</p>\r\n<p>2. Lakukan pengecekan CVT setiap 30.000Km</p>\r\n<p><strong>Hindari perilaku dibawah agar CVT Motor awet :</strong></p>\r\n<p>1. Menahan tuas rem saat motor melaju</p>\r\n<p>2. Menahan gas saat motor berhenti</p>\r\n<p>3. Sering buka-tutup gas</p>'),
+(4, 'KR-04', 'Filter udara kotor', '<p>1. Semprotkan angin bertekanan tinggi atau kompresor</p>\r\n<p>2. Arahkan angin pada setiap sela-sela filter. Perlu diingat juga bahwa untuk membersihkannya, semprot bagian filter dari arah berlawanan dengan arah udara masuk.</p>\r\n<p>3. Jangan dibersihkan menggunakan bensin / air karena dapat merusak komponen filter</p>\r\n<p>4. Rutin membersihkan filter setiap 8000Km</p>'),
+(5, 'KR-05', 'Injector Rusak', '<p>1. Cek Filter Fuel Pump</p>\r\n<p>2. Cek Throttle Position Sensor (TPS)</p>\r\n<p>3. Cek sektor kelistrikan</p>\r\n<p>4. Cek sektor pengapian</p>\r\n<p><strong>Tips agar Injector tidak cepat rusak: </strong></p>\r\n<p>1. Gunakan bensin beroktane tinggi, ini karena motor injeksi sangat sensitif terhadap bensin kualitas buruk.</p>\r\n<p>2. Selalu panaskan motor dipagi hari sebelum melaju, agar aki dapat terisi dengan penuh.</p>\r\n<p>3. Pastikan anda selalu service rutin, minimal 2 kali dalam setahun.</p>\r\n<p>4. Jangan mencuci motor sembarangan, agar air tidak masuk kedalam mesin</p>');
 
 -- --------------------------------------------------------
 
@@ -133,6 +133,20 @@ CREATE TABLE `riwayat` (
   `gejala_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `riwayat`
+--
+
+INSERT INTO `riwayat` (`no`, `user_id`, `gejala_id`, `created_at`) VALUES
+(321, 0, 8, '2020-08-03 13:47:22'),
+(322, 0, 9, '2020-08-03 13:47:22'),
+(323, 0, 8, '2020-08-03 13:56:39'),
+(324, 0, 8, '2020-08-03 13:57:49'),
+(325, 0, 7, '2020-08-03 13:58:00'),
+(326, 0, 8, '2020-08-03 13:58:00'),
+(327, 0, 10, '2020-08-03 13:58:00'),
+(328, 0, 12, '2020-08-03 13:58:00');
 
 -- --------------------------------------------------------
 
@@ -149,6 +163,16 @@ CREATE TABLE `riwayat_diagnosa` (
   `penanganan` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `riwayat_diagnosa`
+--
+
+INSERT INTO `riwayat_diagnosa` (`id`, `user_id`, `kode`, `kerusakan`, `kepercayaan`, `penanganan`, `created_at`) VALUES
+(181, 0, 'KR-03', 'CVT Rusak', 76, '1. Segera ganti CVT dibengkel / tempat service\r\n2. Lakukan pengecekan CVT setiap 30.000Km\r\n\r\nHindari perilaku dibawah agar CVT Motor awet :\r\n1. Menahan tuas rem saat motor melaju\r\n2. Menahan gas saat motor berhenti\r\n3. Sering buka-tutup gas\r\n ', '2020-08-03 13:47:22'),
+(182, 0, 'KR-03', 'CVT Rusak', 70, '<p>1. Segera ganti CVT dibengkel / tempat service</p>\r\n<p>2. Lakukan pengecekan CVT setiap 30.000Km</p>\r\n<p><strong>Hindari perilaku dibawah agar CVT Motor awet :</strong></p>\r\n<p>1. Menahan tuas rem saat motor melaju</p>\r\n<p>2. Menahan gas saat motor ber', '2020-08-03 13:56:39'),
+(183, 0, 'KR-03', 'CVT Rusak', 70, '<p>1. Segera ganti CVT dibengkel / tempat service</p>\r\n<p>2. Lakukan pengecekan CVT setiap 30.000Km</p>\r\n<p><strong>Hindari perilaku dibawah agar CVT Motor awet :</strong></p>\r\n<p>1. Menahan tuas rem saat motor melaju</p>\r\n<p>2. Menahan gas saat motor ber', '2020-08-03 13:57:49'),
+(184, 0, 'KR-02', 'Telat ganti oli', 80, '<p>1. Pilih oli sesuai spesifikasi motor</p>\r\n<p>2. Segera ganti oli dan rutin menggantinya setiap 2.000km</p>\r\n<p>3. Tunggu mesin motor dingin saat mengganti oli</p>\r\n<p>4. Jangan gunakan sisa oli untuk melumasi rantai</p>', '2020-08-03 13:58:00');
 
 -- --------------------------------------------------------
 
@@ -240,13 +264,13 @@ ALTER TABLE `kerusakan`
 -- AUTO_INCREMENT untuk tabel `riwayat`
 --
 ALTER TABLE `riwayat`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
 
 --
 -- AUTO_INCREMENT untuk tabel `riwayat_diagnosa`
 --
 ALTER TABLE `riwayat_diagnosa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

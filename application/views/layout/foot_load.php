@@ -80,6 +80,10 @@
 	<?php if(in_array('dasip',$assets)){ ?>
 		<script src="<?php echo base_url() ?>assets/pages/p_das_input.js"></script>
 	<?php } ?>
+	<!-- summernote -->
+	<?php if(in_array('summernote',$assets)){ ?>
+	<script src="<?php echo base_url() ?>assets/plugins/summernote/summernote.min.js"></script>
+	<?php } ?>
 
 <!-- SIdebar -->
 <script>

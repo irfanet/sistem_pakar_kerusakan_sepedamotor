@@ -2,6 +2,10 @@
   $title = "Data Kerusakan";
   $controller = "Kerusakan";
   ?>
+        <!-- Tiny MCE -->
+
+        <script src="<?php echo base_url() ?>assets/js_custome/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+      <script>tinymce.init({selector:'textarea'});</script>
  <!-- Content Header (Page header) -->
  <div class="content-header">
    <div class="container-fluid">
@@ -54,10 +58,18 @@
 
 
              <!-- Form-part input Kerusakan -->
-             <div class="form-group row">
+             <!-- <div class="form-group row">
                <label for="penanganan" class="col-sm-2 col-form-label">Penanganan</label>
                <div class="col-sm-10">
                  <input type="text" class="form-control" id="penanganan" name="penanganan" step="0.01" min="0" placeholder="Penanganan">
+               </div>
+             </div> -->
+
+            <!-- Form-part input Kerusakan -->
+             <div class="form-group row">
+               <label for="penanganan" class="col-sm-2 col-form-label">Penanganan</label>
+               <div class="col-sm-10">
+                 <textarea class="textarea" id="penanganan" name="penanganan" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                </div>
              </div>
 
@@ -74,6 +86,40 @@
    </div>
  </div>
  <!-- /.content -->
+ <div class="row">
+        <div class="col-md-12">
+          <div class="card card-outline card-info">
+            <div class="card-header">
+              <h3 class="card-title">
+                Bootstrap WYSIHTML5
+                <small>Simple and fast</small>
+              </h3>
+              <!-- tools box -->
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+                <button type="button" class="btn btn-tool btn-sm" data-card-widget="remove" data-toggle="tooltip"
+                        title="Remove">
+                  <i class="fas fa-times"></i></button>
+              </div>
+              <!-- /. tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body pad">
+              <div class="mb-3">
+                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              </div>
+              <p class="text-sm mb-0">
+                Editor <a href="https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg">Documentation and license
+                information.</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-->
+      </div>
+      <!-- ./row -->
  <?php if ($this->session->flashdata('flashStatus')) { ?>
    <script>
      var flashStatus = "<?php echo $this->session->flashdata('flashStatus') ?>";

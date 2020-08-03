@@ -32,7 +32,7 @@ class Kerusakan extends MY_Controller
         $this->pageData = array(
             'title' => 'SP | Tambah data kerusakan',
             'menu' => 'KerusakanInput',
-            'assets' => array('sweetalert2','notif'),
+            'assets' => array('sweetalert2','notif','summernote'),
         );
         $this->page = 'kerusakan/inputform_v.php';
         $this->layout();

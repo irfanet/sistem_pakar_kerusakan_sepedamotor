@@ -30,5 +30,10 @@
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <?php } ?>
+    <!-- summernote -->
+    <?php if(in_array('summernote',$assets)){ ?> 
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/summernote/summernote.min.css">
+    <?php } ?>
+
 
 <!-- Page Style Script goes here -->
