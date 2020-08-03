@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Agu 2020 pada 16.00
+-- Waktu pembuatan: 03 Agu 2020 pada 16.04
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -146,7 +146,10 @@ INSERT INTO `riwayat` (`no`, `user_id`, `gejala_id`, `created_at`) VALUES
 (325, 0, 7, '2020-08-03 13:58:00'),
 (326, 0, 8, '2020-08-03 13:58:00'),
 (327, 0, 10, '2020-08-03 13:58:00'),
-(328, 0, 12, '2020-08-03 13:58:00');
+(328, 0, 12, '2020-08-03 13:58:00'),
+(329, 0, 1, '2020-08-03 14:03:43'),
+(330, 0, 3, '2020-08-03 14:03:43'),
+(331, 0, 4, '2020-08-03 14:03:43');
 
 -- --------------------------------------------------------
 
@@ -172,7 +175,8 @@ INSERT INTO `riwayat_diagnosa` (`id`, `user_id`, `kode`, `kerusakan`, `kepercaya
 (181, 0, 'KR-03', 'CVT Rusak', 76, '1. Segera ganti CVT dibengkel / tempat service\r\n2. Lakukan pengecekan CVT setiap 30.000Km\r\n\r\nHindari perilaku dibawah agar CVT Motor awet :\r\n1. Menahan tuas rem saat motor melaju\r\n2. Menahan gas saat motor berhenti\r\n3. Sering buka-tutup gas\r\n ', '2020-08-03 13:47:22'),
 (182, 0, 'KR-03', 'CVT Rusak', 70, '<p>1. Segera ganti CVT dibengkel / tempat service</p>\r\n<p>2. Lakukan pengecekan CVT setiap 30.000Km</p>\r\n<p><strong>Hindari perilaku dibawah agar CVT Motor awet :</strong></p>\r\n<p>1. Menahan tuas rem saat motor melaju</p>\r\n<p>2. Menahan gas saat motor ber', '2020-08-03 13:56:39'),
 (183, 0, 'KR-03', 'CVT Rusak', 70, '<p>1. Segera ganti CVT dibengkel / tempat service</p>\r\n<p>2. Lakukan pengecekan CVT setiap 30.000Km</p>\r\n<p><strong>Hindari perilaku dibawah agar CVT Motor awet :</strong></p>\r\n<p>1. Menahan tuas rem saat motor melaju</p>\r\n<p>2. Menahan gas saat motor ber', '2020-08-03 13:57:49'),
-(184, 0, 'KR-02', 'Telat ganti oli', 80, '<p>1. Pilih oli sesuai spesifikasi motor</p>\r\n<p>2. Segera ganti oli dan rutin menggantinya setiap 2.000km</p>\r\n<p>3. Tunggu mesin motor dingin saat mengganti oli</p>\r\n<p>4. Jangan gunakan sisa oli untuk melumasi rantai</p>', '2020-08-03 13:58:00');
+(184, 0, 'KR-02', 'Telat ganti oli', 80, '<p>1. Pilih oli sesuai spesifikasi motor</p>\r\n<p>2. Segera ganti oli dan rutin menggantinya setiap 2.000km</p>\r\n<p>3. Tunggu mesin motor dingin saat mengganti oli</p>\r\n<p>4. Jangan gunakan sisa oli untuk melumasi rantai</p>', '2020-08-03 13:58:00'),
+(185, 0, 'KR-01', 'Busi kotor', 64, '<p>1. Pastikan anda selalu membersihkan atau mengganti saringan udara apabila dirasa sudah cukup lama</p>\r\n<p>2. Lakukan pengecekan busi setiap 4.000km</p>\r\n<p>3. Ukur celah busi antara ground dan center elektroda. Apabila celah tersebut lebih besar dari ', '2020-08-03 14:03:43');
 
 -- --------------------------------------------------------
 
@@ -264,13 +268,13 @@ ALTER TABLE `kerusakan`
 -- AUTO_INCREMENT untuk tabel `riwayat`
 --
 ALTER TABLE `riwayat`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=332;
 
 --
 -- AUTO_INCREMENT untuk tabel `riwayat_diagnosa`
 --
 ALTER TABLE `riwayat_diagnosa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
