@@ -29,26 +29,60 @@ class Homepage extends MY_Controller
 			$i=0;
 			foreach($listKerusakan->result() as $value){
 				$listGejala = $this->CF_model->getGejalaByKerusakan($value->id_kerusakan,$gejala);
+				$listKelompok = $this->CF_model->getKelompokByKerusakan($value->id_kerusakan,$gejala);
 				$combineCFmb=0;
 				$combineCFmd=0;
 				$CFBefore=0;
 				$j=0;
-				foreach($listGejala->result() as $value2){
-					$j++;
-					if($j==3){ 
-						$combineCFmb=$value2->mb;
-						$combineCFmd=$value2->md;}
-					else
-					$combineCFmb =$combineCFmb + ($value2->mb * (1 - $combineCFmb));
-					$combineCFmd =$combineCFmd + ($value2->md * (1 - $combineCFmd));
-
-					$combinehasil = $combineCFmb-$combineCFmd; 
+				$combinehasil = 0;
+				$cf_now = 0;
+				$cf_temp = 0;
+				foreach($listKelompok as $list){
+					foreach($listGejala->result() as $value2){
+						if($list->id_kerusakan == $value2->id_kerusakan){
+							$j++;
+							// if($j==3){ 
+							// 	$combineCFmb=$value2->mb;
+							// 	$combineCFmd=$value2->md;
+							// }
+							// else
+							// $combineCFmb =$combineCFmb + ($value2->mb * (1 - $combineCFmb));
+							// $combineCFmd =$combineCFmd + ($value2->md * (1 - $combineCFmd));
+		
+							// $combinehasil = $combineCFmb-$combineCFmd; 
+							
+							if($j==0){
+								$cf_temp = 0;
+							}
+							$cf_now = $value2->mb - $value2->md;
+							$cf_now = $cf_now * -1;
+							// corat coreeetttt
+							$asu1 = 1 - $cf_temp;	
+							$asu2 = $cf_now * $asu1;
+							$i = $j-1;
+							echo "<br>id kerusakan = ".$value2->id_kerusakan." | id gejala =".$value2->id_gejala."<br>";
+							echo "<b>CF".$j."</b> = ". $value2->md ." - ". $value2->mb."<br>";
+							echo "<b>CF".$j."</b> = ". $cf_now ;
+							echo "<br><b>CFcombine".$j."</b> = CFcombine".$i ." + CF". $j . " * ( 1 - CFcombine".$i." )"  ;
+							echo "<br><b>CFcombine".$j."</b> = ". $cf_temp ." + ". $cf_now . " * ( 1 - ".$cf_temp." )"  ;
+							echo "<br><b>CFcombine".$j."</b> = ". $cf_temp ." + ". $cf_now . " * ( ".$asu1." )"  ;
+							echo "<br><b>CFcombine".$j."</b> = ". $cf_temp ." + ( ".$asu2." )"  ;
+							// ikiii rumuusssssssss
+							$combinehasil = $cf_temp + $cf_now * (1 - $cf_temp);
+							$cf_temp = $combinehasil;
+							// corat coret neh
+							echo "<br><b>CFcombine".$j."</b> = ". $combinehasil."<br>";
+			
+						}
+					}
+					// iki yoyo
+					echo "<br><b>=============================================</b><br>";	
 				}
 				if($combinehasil)
 				{
 					$kerusakan[$i]=array('kode'=>$value->kd_kerusakan,
 										'kerusakan'=>$value->kerusakan,
-										'kepercayaan'=>$combinehasil*-100,
+										'kepercayaan'=>$combinehasil*100,
 										'penanganan'=>$value->penanganan);
 					$i++;
 				}

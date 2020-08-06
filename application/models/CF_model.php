@@ -82,10 +82,17 @@ class CF_model extends CI_Model
     }
 
     function getGejalaByKerusakan($id,$gejala=null){
-        $sql = "select cf_aturan.id_gejala,md,mb from cf_aturan where id_kerusakan=".$id;
+        $sql = "select * from cf_aturan where id_kerusakan=".$id;
         if($gejala!=null)
            $sql=$sql." and id_gejala in (".$gejala.")";
-       $sql=$sql." order by id_gejala";
+       $sql=$sql." order by id_kerusakan";
         return $this->db->query($sql);
+    }
+    function getKelompokByKerusakan($id,$gejala=null){
+        $sql = "select * from cf_aturan where id_kerusakan=".$id;
+        if($gejala!=null)
+           $sql=$sql." and id_gejala in (".$gejala.")";
+       $sql=$sql." group by id_kerusakan";
+        return $this->db->query($sql)->result();
     }
 }
